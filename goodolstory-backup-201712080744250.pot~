@@ -3,31 +3,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-08 07:44+0000\n"
+"POT-Creation-Date: 2017-12-07 11:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco - https://localise.biz/"
+"X-Generator: Loco https://localise.biz/"
 
-#: footer.php:18
+#: footer.php:11
 msgid "Untilted"
 msgstr ""
 
-#: footer.php:18
+#: footer.php:11
 msgid "Design"
-msgstr ""
-
-#: functions.php:38
-msgid "Some Title"
-msgstr ""
-
-#: functions.php:52
-msgid "Social Menu"
 msgstr ""
 
 #: loop-main.php:9 loop-second.php:7 loop-third.php:7
