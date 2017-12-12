@@ -1,7 +1,7 @@
 <!-- Section -->
 	<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 		<div class="content">
-			<h1><?php the_title(); ?></h1>
+			<h1><?php the_title(); echo get_post_meta( get_the_id(), 'kaina', true );?></h1>
 			<p><?php the_excerpt(); ?></p>
 <!-- 							<p class="major">A (modular, highly tweakable) responsive one-page template designed by <a href="https://html5up.net">HTML5 UP</a> and released for free under the <a href="https://html5up.net/license">Creative Commons</a>.</p> -->
 

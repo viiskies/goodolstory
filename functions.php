@@ -68,20 +68,84 @@ function mano_title( $title ) {
 
 // widgets
 $args = array(
-  'name' => __( 'Main Sidebar', 'goodolstory' ),
-  'id' => 'sidebar-1',
-  'description' => 'Main widget area',
-  'before_widget' => '<article id="%1$s" class="widget %2$s">',
-  'after_widget'  => '</article>',
-  'before_title'  => '<h3 class="widgettitle">',
-  'after_title'   => '</h3>',
-);
+	'name' => __( 'Main Sidebar', 'goodolstory' ),
+	'id' => 'sidebar-1',
+	'description' => 'Main widget area',
+	'before_widget' => '<article id="%1$s" class="widget %2$s">',
+	'after_widget'  => '</article>',
+	'before_title'  => '<h3 class="widgettitle">',
+	'after_title'   => '</h3>',
+	);
 register_sidebar( $args );
 
 
 function arunas_load_widget() {
-    register_widget( 'Arunas_Widget' );
+	register_widget( 'Arunas_Widget' );
 }
 add_action( 'widgets_init', 'arunas_load_widget' );
 
 include_once( 'includes/arunas-widget.php' );
+
+
+
+// customizing the customizer
+add_action( 'customize_register', 'arunas_customize_register' );
+
+function arunas_customize_register( $wp_customize ) {
+  // registruoti customizer objektus
+	$wp_customize->add_section( 
+		'custom_story_css', 
+		array(
+			'title' => __( 'Custom Story Theme CSS' ),
+			'description' => __( 'Add custom CSS here' ),
+			'panel' => '', // Not typically needed.
+			'priority' => 160,
+			'capability' => 'edit_theme_options',
+			'theme_supports' => '', // Rarely needed.
+			) 
+		);
+
+	$wp_customize->add_setting( 
+		'story_copyright', 
+		array(
+			'type' => 'theme_mod', // or 'option'
+			'capability' => 'edit_theme_options',
+			'theme_supports' => '', // Rarely needed.
+			'default' => 'All rights reserved.',
+			'transport' => 'refresh', // or postMessage
+			'sanitize_callback' => '',
+			'sanitize_js_callback' => '', // Basically to_json.
+			)
+		);
+
+	$wp_customize->add_control(
+		'story_copyright', 
+		array(
+			'type' => 'text',
+		    'priority' => 10, // Within the section.
+		    'section' => 'custom_story_css', // Required, core or custom.
+		    'label' => __( 'Date' ),
+		    'description' => __( 'This is a date control with a red border.' ),
+		    'input_attrs' => array(
+		    	'class' => 'my-custom-class-for-js',
+		    	'style' => 'border: 1px solid #900',
+		    	'placeholder' => __( 'mm/dd/yyyy' ),
+		    	),
+		    'active_callback' => 'is_front_page',
+		    )
+		);
+
+	$wp_customize->selective_refresh->add_partial( 
+		'setting_id', 
+		array(
+			'selector' => 'footer p',
+			'container_inclusive' => false,
+			'render_callback' => 'render_copyright',
+			)
+		);
+
+	function render_copyright() {
+		return get_theme_mod( 'story_copyright' );
+	}
+}
+
